@@ -1,0 +1,53 @@
+class Wikipedia extends React.Component {
+  constructor(props) {
+    super(props);
+    const image = '';
+  this.handleSearch=this.handleSearch.bind(this);
+    this.state= {
+      array: []
+    }
+    }
+  
+  handleSearch(e) {
+    e.preventDefault();
+    const api = `https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${e.target.elements.entry.value}`;
+    fetch(api)
+    .then(responce => responce.json())
+    .then(json => {
+      const key = Object.keys(json.query.pages);
+      const all = key.map((y) => (json.query.pages[y]));
+      this.setState({array: all});
+    })
+  }
+    
+
+  render() {
+    return(<div> 
+        <h1>Wikipedia Viewer</h1>
+        <a href='https://en.wikipedia.org/wiki/Special:Random' target='_blank'> Get Random </a>
+        <form onSubmit={this.handleSearch}>
+          <input type='text' name='entry' placeholder='search' autofocus/>
+        </form>
+        {this.state.array.map((x)=> <Stuffs json={x}/>)}
+      </div>)
+  }
+  }
+
+
+const Stuffs = (props) => {
+  return (
+  <div>
+       <div id="card">
+         <a href={'https://en.wikipedia.org/wiki/'+ props.json.title} target='_blank'>
+         {props.json.title}<hr/>
+         <img 
+src={props.json.thumbnail!= null? props.json.thumbnail.source.replace(/50px/i, '200px') :''}/><p id='small'>{props.json.extract}</p></a></div>
+      {console.log(props.json)}
+      </div>
+  );
+}
+  
+
+  ReactDOM.render(
+    <Wikipedia/>, document.getElementById('root'))
+

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Nova+Flat');
+
+body {
+background-color:lightblue;
+font-family: 'Nova Flat', cursive;
+
+}
+#root {
+  text-align:center;
+ 
+}
+
+#card{
+  margin:10px auto 10px auto;
+  width: 60%;
+  background-color:#337;
+  min-height: 80px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 2px 3px 5px grey;
+}
+#card:hover {
+  background-color:#559;
+}
+
+a {text-decoration:none;}
+input {
+  text-align:center;
+  font-size: 18px;
+  margin: 5px;
+  font-family: 'Nova Flat', cursive;
+}
+
+#small{
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color:white; 
+}
+#card:hover {
+  animation: wobble 20.5s;
+  animation-iteration-count: infinite;
+}
+
+#root > div > a {
+  color:blue;
+  text-decoration: underline;
+}
+@keyframes wobble {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
